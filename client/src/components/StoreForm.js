@@ -20,24 +20,41 @@ class StoreForm extends React.Component {
     this.setState({ [name]: value, });
   }
 
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const store = { ...this.state, };
+  //   axios.patch("/api/stores", store)
+  //     .then( res => {
+  //       this.props.history.push("/stores");
+  //     })
+  //     this.setState(this.name);
+
+  //   }
+
+  //Need to add a check for store id - if it has an id => edit, if not create new
   handleSubmit = (e) => {
     e.preventDefault();
-    const store = { ...this.state, };
-    axios.post("/api/stores", store)
-      .then( res => {
-        this.props.history.push("/stores");
-      })
-      this.setState(this.name);
-
+    const store = { ...this.state };
+    const { id } = this.props.match.params;
+    if (id) {
+      axios.put(`/api/stores/${id}`, store )
+        .then( res => {
+          this.props.history.push(`/stores/${id}`)
+        })
+    } else {
+      axios.post(`/api/stores`, store)
+        .then( res => {
+          this.props.history.push(`/stores`)
+        })
     }
-
+  }
 
   render() {
     const { name } = this.state
 
     return (
       <div>
-        <Header as='h1'> New Store </Header>
+        <Header as='h1'> Input Store Name </Header>
         <Form onSubmit={ this.handleSubmit}>
           <Form.Group widths='equal'>
             <Form.Input 

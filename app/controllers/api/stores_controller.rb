@@ -20,7 +20,7 @@ class Api::StoresController < ApplicationController
   end
 
   def update
-    if @store.updates(store_params)
+    if @store.update(store_params)
       render json: @store
     else 
       render json: @store.errors, status: 422

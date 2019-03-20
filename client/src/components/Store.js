@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios"
 import { Link } from "react-router-dom";
 import { Header, Button, Card, } from "semantic-ui-react"
+import ItemCard from './ItemCard'
 
 class Store extends React.Component {
   state = { store: {}, items: [], };
@@ -40,12 +41,12 @@ class Store extends React.Component {
         })
       }
   
-      // renderItems = () => {
-      //   return this.state.items.map(p => (
-      //     <ItemCard key={p.id} {...p} 
-      //     remove={this.remove} />
-      //   ))
-      // }
+      renderItems = () => {
+        return this.state.items.map(p => (
+          <ItemCard key={p.id} {...p} 
+          remove={this.remove} />
+        ))
+      }
 
   render() {
     const { id, name } = this.state.store
@@ -54,30 +55,32 @@ class Store extends React.Component {
       <div>
           <Header as='h1'> {name} </Header>
           <Link to={`/stores/${id}/items/new`}>
-            <Button>
+            <Button color='blue'>
               Add Item
             </Button>
-            <br />          
+            <br />         
           </Link>
+          <br />
+          <Link to= {`/stores/${id}/edit`}>
+            <Button color='green'>
+              Edit Store
+            </Button>
+          </Link>
+
+          <Button  color='red' onClick={this.handleDelete}>
+            Delete Store
+          </Button>
+
+          <Link to={`/stores/${id}/items`}>
+          </Link>
+          <br />
+          <hr />
+          
           <Card.Group itemsPerRow={3}>
             {this.renderItems()}
           </Card.Group>
-          <br />
-          <Link to= {`/stores/${id}/edit`}>
-            <Button>
-              Edit
-            </Button>
-          </Link>
-          <Button onClick={this.handleDelete}>
-            Delete
-          </Button>
-          <Link to={`/stores/${id}/items`}>
-          </Link>
       </div>
     )
   }
 }
-
-
-
 export default Store;

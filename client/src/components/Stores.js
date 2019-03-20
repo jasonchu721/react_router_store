@@ -23,6 +23,9 @@ class Stores extends React.Component {
         <Card.Content>
           <Card.Header>{ store.name } </Card.Header>
         </Card.Content>
+        <Card.Content extra>
+          <Button as={Link} to={`/stores/${store.id}`} color='blue'>View</Button>
+        </Card.Content>
       </Card>
     ))
   }
