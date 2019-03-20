@@ -26,20 +26,6 @@ class Store extends React.Component {
         this.props.history.push("/stores");
       })
   }
-
-  removeItem = (id) => {
-    const remove = window.confirm("Delete item?");
-    const dId = this.props.match.params.id
-    if (remove)
-      axios.delete(`/api/stores/${dId}/items/${id}`)
-        .then( res => {
-          const items = this.state.items.filter( i => {
-            if (i.id !== id)
-            return i;
-          })
-          this.setState({ items });
-        })
-      }
   
       renderItems = () => {
         return this.state.items.map(p => (
@@ -47,6 +33,18 @@ class Store extends React.Component {
           remove={this.remove} />
         ))
       }
+
+      remove = (id) => {
+        const dId = this.props.match.params.id
+          axios.delete(`/api/stores/${dId}/items/${id}`)
+            .then( res => {
+              const items = this.state.items.filter( i => {
+                if (i.id !== id)
+                return i;
+              })
+              this.setState({ items });
+            })
+          }
 
   render() {
     const { id, name } = this.state.store

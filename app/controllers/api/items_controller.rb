@@ -38,11 +38,11 @@ class Api::ItemsController < ApplicationController
   end 
 
   def set_item 
-    @item = @department.items.find(params[:id])
+    @item = @store.items.find(params[:id])
   end 
 
   def item_params
-    params.require(:item).permit(:name, :description, :department, :price)
+    params.require(:item).permit(:name, :description, :price, )
   end 
 
 end

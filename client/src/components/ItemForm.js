@@ -49,7 +49,7 @@ class ItemForm extends React.Component {
 
     return (
       <div>
-        <Header as="h1">New Item</Header>
+        <Header as="h1">Submit Item</Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group widths="equal">
             <Form.Input
