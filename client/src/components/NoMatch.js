@@ -4,8 +4,8 @@ import { Button, Header, } from "semantic-ui-react";
 
 const NoMatch = () => (
   <div style={styles.container}>
-    <Header as="h1" style={styles.header}>RIP</Header>
-    <Header as="h3">YOU FOUND A BROKEN LINK.</Header>
+    <Header as="h1" style={styles.header}>Oh Hai Mark</Header>
+    <Header as="h3">YOU FOUND A BROKEN LINK</Header>
     <Link to="/">
       <Button color="black">Home</Button>
     </Link>
